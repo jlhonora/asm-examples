@@ -1,0 +1,29 @@
+     1                                  ; Prints lines of colors in screen
+     2                                  ; Must be compiled in NASM bin format
+     3                                  ; and then written to memory
+     4                                  ;
+     5                                  ; nasm screen.asm -l screen.lst
+     6                                  ;
+     7                                  	org 0x0100 ; Not useful in linux
+     8                                  main:
+     9 00000000 B013                    	mov AL, 0x13
+    10 00000002 B400                    	mov AH, 0
+    11 00000004 CD10                    	int 0x10 
+    12 00000006 BB[2500]                	mov bx, colores
+    13 00000009 B90A00                  	mov CX, 10
+    14                                  for1:
+    15 0000000C 8A07                    	mov AL, byte [bx]
+    16 0000000E BA1400                  	mov DX, 20
+    17                                  for2:
+    18 00000011 B40C                    	mov AH, 0x0C
+    19 00000013 CD10                    	int 0x10
+    20 00000015 42                      	inc DX 
+    21 00000016 83FA64                  	cmp DX, 100 
+    22 00000019 75F6                    	jne for2
+    23 0000001B 43                      	inc bx 
+    24 0000001C 83C105                  	add CX, 5 
+    25 0000001F 83F928                  	cmp CX, 40
+    26 00000022 75E8                    	jne for1
+    27 00000024 C3                      	ret
+    28                                  
+    29 00000025 0C0A090E0F07            colores	db 0b1100, 0b1010, 0b1001, 0b1110, 0b1111, 0b0111
