@@ -1,4 +1,4 @@
-## Assembly examples for x86-64
+## Assembly examples for x86-64.
 
 Here you can find toy programs written in assembly for x86-64 using the System V ABI (Linux) and`nasm` syntax.
 
